@@ -1,0 +1,60 @@
+body{
+    padding: 0;
+    margin: 0;
+    background-color: #FF984F;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    transition: background-color 1s ease;
+}
+
+p{
+    text-align: center;
+    margin: 2vh auto;
+    font-family: "Raleway", sans-serif;
+    color: white;
+    font-size: 3vh;
+}
+
+a:visited{
+    text-decoration: none;
+}
+
+::selection{
+    background: transparent;
+}
+
+#header{
+    text-align: center;
+    margin: 3vh auto 1vh auto;
+    height: 10vh;
+    font-family: "Raleway", sans-serif;
+    font-size: 7vh;
+    color: white;
+}
+
+#game-container{
+    width: 100%;
+    height: 65vh;
+}
+    
+svg{
+    text-align: center;
+}
+
+#score{
+    font-size: 60vh;
+    font-family: "Josefin Slab", sans-serif;
+    opacity: 0.3;
+    fill: none;
+    stroke: white;
+    stroke-width: 10;
+}
+
+#subfooter{
+    margin: 5vh auto 0 auto;
+    font-size: 12px;
+}
