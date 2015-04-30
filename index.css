@@ -19,6 +19,10 @@ p{
     font-size: 3vh;
 }
 
+a:link{
+    text-decoration: none;
+    color: white;
+}
 a:visited{
     text-decoration: none;
 }
