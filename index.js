@@ -24,8 +24,9 @@ function restart_game() {
     minh = 100;
     vel = 3;
     adj = 2;
-    leeway = 4;
+    leeway = 5;
     blob.setAttribute("cy", minh-adj+"%");
+    floor.setAttribute("opacity", 1);
 }
 
 function get_ran(){
