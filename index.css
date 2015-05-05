@@ -50,6 +50,7 @@ a:visited {
 
 svg {
     text-align: center;
+    -webkit-tap-highlight-color: none;
 }
 
 #score {
