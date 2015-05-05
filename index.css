@@ -65,3 +65,8 @@ svg {
     margin: 5vh auto 0 auto;
     font-size: 12px;
 }
+
+* {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+}
