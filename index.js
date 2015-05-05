@@ -17,25 +17,26 @@ function restart_game() {
         //displays 0 as score if just started game
         score.innerHTML = "0";
     }
-    //sets variables
+    //sets variables. Heights represent percentages
+    //heights are inversed in SVG ~ 0 is top ~ 100 is bottom
     direction = "flat";
-    maxh = 1;
-    toph = 85;
-    minh = 100;
-    vel = 3;
-    adj = 2;
-    leeway = 5;
-    blob.setAttribute("cy", minh-adj+"%");
+    maxh = 1;               //SVGview ceiling
+    toph = 85;              //Max height ball can bounce
+    minh = 100;             //SVGview floor
+    adj = 2;                //estimated adjustment for circle's diameter
+    leeway = 5;             //leeway for user to click before hitting ground. Difficulty level.
+    blob.setAttribute("cy", minh-adj+"%");      //places blob on floor
     floor.setAttribute("opacity", 1);
 }
 
 function get_ran(){
     return Math.floor(Math.random() * (4-1+1) + 1);
     //                               (max-min+1) + min
-    //returns random in between and including 1 to 4
+    //returns random int between and including 1 to 4
 }
 
 function swap_colors() {
+    //when blob hits SVG ceiling, swap colors
     if (color == "orange"){
         blob.style.fill = "#FF984F";
         floor.style.fill = "#FF984F";
@@ -57,14 +58,15 @@ function swap_colors() {
 
 function apply_score() {
     if (score.innerHTML == ":("){
+        //skips "0" score
         score.innerHTML = 1;
     }else {
+        //updates current score
         var cur_score = parseInt(score.innerHTML) + 1;
-        //applies current score
         score.innerHTML = cur_score;
         
         if (cur_score > cur_high) {
-            //applies high score
+            //updates high score
             cur_high = cur_score;
             highscore.innerHTML = "Highscore: " + cur_high;
         }
@@ -72,11 +74,11 @@ function apply_score() {
 }
 
 function bounce() {
+    //get blob's current height
     var cur_h = parseInt(blob.getAttribute("cy").slice(0, -1));
-    //get current height
     if (direction == "down"){
         if (cur_h + adj > minh) {
-            //if hit floor -> restart game
+            //if hit floor
             restart_game();
             return false;
         } else{
@@ -85,11 +87,11 @@ function bounce() {
         }
     } else if (direction == "up"){
         if (cur_h - adj < maxh){
-            //if hit ceiling -> go down and swap colors
+            //if hit ceiling
             swap_colors();
             direction = "down";
         }else if (cur_h < toph){
-            //hit top
+            //if hit max height
             direction = "down";
         }else {
             //else move blob up
@@ -97,14 +99,13 @@ function bounce() {
         }
     }
     if (new_h != undefined){
-        //if blob not at floor or ceiling
-        //set blob height and floor opacity
+        //unless blob is at min or max height
+        //update blob height and floor opacity
         blob.setAttribute("cy", new_h+"%");
-        //floor.setAttribute("opacity", ((new_h-40)/70));
         floor.setAttribute("opacity", (new_h-80)/20);
     }
     if (direction != "flat"){
-        //continue if game not over
+        //call function again if game not over
         requestAnimationFrame(bounce);
     }
 }
@@ -112,18 +113,19 @@ function bounce() {
 function entry(){
     var cur_h = parseInt(blob.getAttribute("cy").slice(0, -1));
     
-    //for testing--
+    //for testing make the following loop TRUE--
     //if (true){
     if (cur_h > (minh - leeway) && (direction != "up")) {
         //if in sweet spot
         apply_score();
         
         if (direction == "flat"){
+            //if first bounce after restart
             direction = "up";
             bounce();
         }else if (direction == "down"){
-            //get random amount to increase max height
             if (toph > 0) {
+                //increase max height
                 toph -= get_ran();
             }
             direction = "up";
