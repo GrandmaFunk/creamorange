@@ -8,3 +8,7 @@ Get highscores and try to reach the top.
 
 
 creamorange is licensed under the [MIT License](https://github.com/GrandmaFunk/creamorange/blob/master/LICENSE)
+
+
+#Contributors
+[Thomas Huzij](https://github.com/Tubebaum)
